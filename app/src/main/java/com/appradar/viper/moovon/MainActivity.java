@@ -1,8 +1,6 @@
 package com.appradar.viper.moovon;
 
-import android.app.AlarmManager;
 import android.app.PendingIntent;
-import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
@@ -30,7 +28,6 @@ import com.google.android.gms.common.api.GoogleApiClient;
 import com.google.android.gms.location.ActivityRecognition;
 
 import fragments.Pager;
-import mutils.CustomAlarmReceiver;
 import mutils.RecognizeMotionService;
 
 public class MainActivity extends AppCompatActivity implements GoogleApiClient.ConnectionCallbacks, GoogleApiClient.OnConnectionFailedListener {
@@ -49,8 +46,6 @@ public class MainActivity extends AppCompatActivity implements GoogleApiClient.C
         setContentView(R.layout.activity_main);
 
         initViews();
-
-        //scheduleAlarm();
     }
 
     private void initViews()
@@ -180,22 +175,6 @@ public class MainActivity extends AppCompatActivity implements GoogleApiClient.C
                 .build();
     }
 
-
-    // Setup a recurring alarm every half hour
-    public void scheduleAlarm() {
-        // Construct an intent that will execute the AlarmReceiver
-        Intent intent = new Intent(getApplicationContext(), CustomAlarmReceiver.class);
-        // Create a PendingIntent to be triggered when the alarm goes off
-        final PendingIntent pIntent = PendingIntent.getBroadcast(this, CustomAlarmReceiver.REQUEST_CODE,
-                intent, PendingIntent.FLAG_UPDATE_CURRENT);
-        // Setup periodic alarm every 5 seconds
-        long firstMillis = System.currentTimeMillis(); // alarm is set right away
-        AlarmManager alarm = (AlarmManager) this.getSystemService(Context.ALARM_SERVICE);
-        // First parameter is the type: ELAPSED_REALTIME, ELAPSED_REALTIME_WAKEUP, RTC_WAKEUP
-        // Interval can be INTERVAL_FIFTEEN_MINUTES, INTERVAL_HALF_HOUR, INTERVAL_HOUR, INTERVAL_DAY
-        alarm.setInexactRepeating(AlarmManager.RTC_WAKEUP, firstMillis,
-                1000 * 60, pIntent);
-    }
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {

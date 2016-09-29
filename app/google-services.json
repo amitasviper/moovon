@@ -1,0 +1,55 @@
+{
+  "project_info": {
+    "project_number": "889298263410",
+    "firebase_url": "https://moovon-5b642.firebaseio.com",
+    "project_id": "moovon-5b642",
+    "storage_bucket": "moovon-5b642.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:889298263410:android:86dbb4ae37e9ae83",
+        "android_client_info": {
+          "package_name": "com.appradar.viper.moovon"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "889298263410-atpt7btna45550f9obov019pbboi7tfk.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.appradar.viper.moovon",
+            "certificate_hash": "51AF27C7434E7BEF5DC37B84EC37AF24751CEF74"
+          }
+        },
+        {
+          "client_id": "889298263410-qnlslemfsp1qilv1nne1jvkh3g0nd49p.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCdQJTeQni3eJati9B6Vlu9bHCvWwkdUic"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "889298263410-qnlslemfsp1qilv1nne1jvkh3g0nd49p.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

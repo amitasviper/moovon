@@ -2,12 +2,14 @@ package mutils;
 
 import android.app.IntentService;
 import android.app.Notification;
+import android.app.PendingIntent;
 import android.content.Intent;
 import android.support.v4.app.NotificationCompat;
 import android.support.v4.app.NotificationManagerCompat;
 import android.util.Log;
 
 import com.appradar.viper.moovon.R;
+import com.appradar.viper.moovon.SettingsActivity;
 
 /**
  * Created by viper on 29/09/16.
@@ -23,13 +25,26 @@ public class MyTestService extends IntentService {
     @Override
     protected void onHandleIntent(Intent intent) {
         // Do the task here
-        Log.i("MyTestService", "Service running");
+        int alert_type = intent.getIntExtra(SettingsActivity.ALERT_TYPE, 1);
+        Log.i("MyTestService", "Service called for alert type : " + alert_type);
+
+        Intent actintent = new Intent(this, SettingsActivity.class);
+
+        PendingIntent pIntent = PendingIntent.getActivity(this, 1,
+                actintent, PendingIntent.FLAG_UPDATE_CURRENT);
 
         NotificationCompat.Builder builder = new NotificationCompat.Builder(this);
-        builder.setContentText("Drink water alert");
+
+        String alertText = "";
+        if (alert_type == SettingsActivity.ALERT_WATER)
+            alertText = "Drinking water alert";
+        if (alert_type == SettingsActivity.ALERT_MOVE)
+            alertText = "Move around alert";
+        builder.setContentText(alertText);
         builder.setDefaults(Notification.DEFAULT_SOUND);
         builder.setSmallIcon( R.mipmap.ic_launcher );
         builder.setContentTitle( getString( R.string.app_name ) );
+        builder.setContentIntent(pIntent);
         NotificationManagerCompat.from(this).notify(NotificationId++, builder.build());
     }
 }
