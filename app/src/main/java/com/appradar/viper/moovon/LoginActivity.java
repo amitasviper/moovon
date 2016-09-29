@@ -38,6 +38,8 @@ import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.auth.GoogleAuthProvider;
 import com.google.firebase.auth.UserInfo;
 
+import mutils.AppSharedPreferences;
+
 public class LoginActivity  extends AppCompatActivity implements
         GoogleApiClient.OnConnectionFailedListener,
         View.OnClickListener {
@@ -201,7 +203,14 @@ public class LoginActivity  extends AppCompatActivity implements
     }
 
     protected void Go_To_HomePage(){
-        startActivity(new Intent(getApplicationContext(), WelcomeActivity.class));
+        Intent intent;
+        int flag = AppSharedPreferences.getInstance().getPropInteger(AppSharedPreferences.APP_LAUNCH_FLAG);
+        if (flag == 0)
+            intent = new Intent(getApplicationContext(), WelcomeActivity.class);
+        else
+            intent = new Intent(getApplicationContext(), MainActivity.class);
+
+        startActivity(intent);
         finish();
 //        UserProfileNode.getExperienceReference(UserProfileNode.getLoggedOnUserId()).addListenerForSingleValueEvent(new ValueEventListener() {
 //            @Override

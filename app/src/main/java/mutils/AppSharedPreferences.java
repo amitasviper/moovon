@@ -2,6 +2,7 @@ package mutils;
 
 import android.content.Context;
 import android.content.SharedPreferences;
+import android.util.Log;
 
 import com.appradar.viper.moovon.GlobalApplication;
 
@@ -16,6 +17,7 @@ public class AppSharedPreferences {
     public static String SETTING_GENDER = "SettingGender";
     public static String SETTING_WATER_FREQ = "SettingWater";
     public static String SETTING_MOVEMENT_FREQ = "SettingMovement";
+    public static String APP_LAUNCH_FLAG = "launhFlag";
 
 
     String SHARED_PREF_NAME = "SETTINGS";
@@ -37,6 +39,7 @@ public class AppSharedPreferences {
 
     public int getPropInteger(String keyName)
     {
+        Log.e("getPropInteger", "KeyName is : " +keyName);
         return mSharedPref.getInt(keyName, 0);
     }
 

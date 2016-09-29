@@ -5,8 +5,6 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
-import android.support.design.widget.TabLayout;
-import android.support.v4.view.ViewPager;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
@@ -31,16 +29,12 @@ import com.google.android.gms.location.ActivityRecognition;
 import com.google.firebase.auth.FirebaseUser;
 import com.squareup.picasso.Picasso;
 
-import fragments.Pager;
 import mutils.CircleTransform;
 import mutils.RecognizeMotionService;
 
 public class MainActivity extends AppCompatActivity implements GoogleApiClient.ConnectionCallbacks, GoogleApiClient.OnConnectionFailedListener {
 
     public GoogleApiClient mApiClient;
-
-    TabLayout tabLayout;
-    ViewPager viewPager;
 
     DrawerLayout mDrawerLayout;
     ListView mDrawerList;
@@ -67,49 +61,6 @@ public class MainActivity extends AppCompatActivity implements GoogleApiClient.C
         final Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
-        //Initializing the tablayout
-        tabLayout = (TabLayout) findViewById(R.id.tabLayout);
-
-        //Adding the tabs using addTab() method
-        tabLayout.addTab(tabLayout.newTab().setText("Page #1"));
-        tabLayout.addTab(tabLayout.newTab().setText("Page #2"));
-        tabLayout.addTab(tabLayout.newTab().setText("Page #3"));
-        tabLayout.addTab(tabLayout.newTab().setText("Page #4"));
-        tabLayout.addTab(tabLayout.newTab().setText("Page #5"));
-        tabLayout.addTab(tabLayout.newTab().setText("Page #6"));
-        tabLayout.setTabGravity(TabLayout.GRAVITY_FILL);
-
-        //Initializing viewPager
-        viewPager = (ViewPager) findViewById(R.id.pager);
-
-        //Creating our pager adapter
-        Pager adapter = new Pager(getSupportFragmentManager(), tabLayout.getTabCount());
-
-        //Adding adapter to pager
-        viewPager.setAdapter(adapter);
-        viewPager.addOnPageChangeListener(new ViewPager.OnPageChangeListener() {
-            @Override
-            public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels)
-            {
-                //Log.e("onPageScrolled", position + "  " +positionOffset );
-            }
-
-            @Override
-            public void onPageSelected(int position) {
-                Log.e("onPageSelected", "" + position);
-                TabLayout.Tab tab = tabLayout.getTabAt(position);
-                tab.select();
-            }
-
-            @Override
-            public void onPageScrollStateChanged(int state)
-            {
-                //handle if needed
-            }
-        });
-
-        //Adding onTabSelectedListener to swipe views
-        tabLayout.setOnTabSelectedListener(new MainActivityTabListener());
 
         // Creating an ArrayAdapter to add items to the listview mDrawerList
         ArrayAdapter<String> adapterL = new ArrayAdapter<String>(
@@ -160,14 +111,8 @@ public class MainActivity extends AppCompatActivity implements GoogleApiClient.C
 
                 if (option_text.equalsIgnoreCase(getString(R.string.logout)))
                 {
-                    UserProfile.logout_user(MainActivity.this);
+                    LogOutUser();
                     return;
-                }
-
-                if (position < tabLayout.getTabCount())
-                {
-                    viewPager.setCurrentItem(position);
-                    tabLayout.getTabAt(position);
                 }
 
                 // Closing the drawer
@@ -182,6 +127,13 @@ public class MainActivity extends AppCompatActivity implements GoogleApiClient.C
 
         SetupProfileInfo();
 
+    }
+
+    private void LogOutUser()
+    {
+        UserProfile.logout_user(MainActivity.this);
+        startActivity(new Intent(MainActivity.this, LoginActivity.class));
+        finish();
     }
 
     private void SetupProfileInfo()
@@ -250,7 +202,7 @@ public class MainActivity extends AppCompatActivity implements GoogleApiClient.C
 
         if (menuItem.getItemId() == R.id.logout)
         {
-            UserProfile.logout_user(MainActivity.this);
+            LogOutUser();
         }
 
         if (menuItem.getItemId() == R.id.menu_settings)
@@ -261,22 +213,4 @@ public class MainActivity extends AppCompatActivity implements GoogleApiClient.C
         return super.onOptionsItemSelected(menuItem);
     }
 
-    private class MainActivityTabListener implements TabLayout.OnTabSelectedListener
-    {
-
-        @Override
-        public void onTabSelected(TabLayout.Tab tab) {
-            viewPager.setCurrentItem(tab.getPosition());
-        }
-
-        @Override
-        public void onTabUnselected(TabLayout.Tab tab) {
-
-        }
-
-        @Override
-        public void onTabReselected(TabLayout.Tab tab) {
-
-        }
-    }
 }

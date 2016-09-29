@@ -131,6 +131,9 @@ public class WelcomeActivity extends AppCompatActivity {
     private void launchHomeScreen() {
 //        UserProfile currentUser = new UserProfile(UserProfileNode.getLoggedOnUserDisplayName(), reasonToJoinArmy, experience, occupation);
 //        UserProfileNode.getUserProfile(UserProfileNode.getLoggedOnUserId()).getRef().updateChildren(currentUser.toMap());
+
+        AppSharedPreferences.getInstance().setPropInteger(AppSharedPreferences.APP_LAUNCH_FLAG, 1);
+
         startActivity(new Intent(WelcomeActivity.this, MainActivity.class));
         finish();
     }
