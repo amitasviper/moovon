@@ -29,10 +29,13 @@
             android:process=":remote" />
 
         <activity android:name=".SettingsActivity" />
-        <activity android:name=".MainActivity"></activity>
+        <activity android:name=".MainActivity" />
+
         <meta-data
             android:name="com.facebook.sdk.ApplicationId"
             android:value="@string/facebook_app_id" />
+
+        <activity android:name=".WelcomeActivity"></activity>
     </application>
 
 </manifest>

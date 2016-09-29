@@ -203,7 +203,7 @@ public class LoginActivity  extends AppCompatActivity implements
     }
 
     protected void Go_To_HomePage(){
-        startActivity(new Intent(getApplicationContext(), MainActivity.class));
+        startActivity(new Intent(getApplicationContext(), WelcomeActivity.class));
         finish();
 //        UserProfileNode.getExperienceReference(UserProfileNode.getLoggedOnUserId()).addListenerForSingleValueEvent(new ValueEventListener() {
 //            @Override
