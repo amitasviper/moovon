@@ -2,7 +2,7 @@
     <string name="app_name">Moovon</string>
 
     <string-array name="options">
-        <item>Option #1</item>
+        <item>Dashboard</item>
         <item>Option #2</item>
         <item>Option #3</item>
         <item>Option #4</item>
@@ -21,12 +21,10 @@
     <string name="notification_freq_water">Water</string>
     <string name="notification_freq_movement">Movement</string>
 
-<<<<<<< HEAD
     // dash board lable
     <string name="walk_progress_lable">Walk Progress</string>
     <string name="Water_drink_progress_lable">Water drink progress</string>
 
-=======
     <!-- Strings related to login -->
     <string name="prompt_email">Email</string>
     <string name="prompt_password">Password (optional)</string>
@@ -78,5 +76,5 @@
     <string name="facebook_app_id">1769756766625168</string>
     <string name="next">Next</string>
     <string name="start">Start</string>
->>>>>>> origin/master
+
 </resources>

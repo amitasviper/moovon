@@ -23,17 +23,19 @@
 
         <service android:name="mutils.RecognizeMotionService" />
         <service
-            android:name="mutils.MyTestService"
+            android:name="mutils.DrinkWaterService"
+            android:exported="false" />
+
+        <service
+            android:name="mutils.MoveService"
             android:exported="false" />
 
         <receiver
             android:name="mutils.DrinkWaterAlarmReceiver"
             android:process=":remote" />
 
-<<<<<<< HEAD
-        <activity android:name=".SettingsActivity" />
         <activity android:name=".DashBoard"></activity>
-=======
+
         <receiver
             android:name="mutils.MoveAlarmReceiver"
             android:process=":remote" />
@@ -41,14 +43,16 @@
         <activity
             android:name=".SettingsActivity"
             android:windowSoftInputMode="adjustResize" />
+
         <activity android:name=".LoginActivity" />
+
+        <activity android:name=".GpsTrackerActivity" />
 
         <meta-data
             android:name="com.facebook.sdk.ApplicationId"
             android:value="@string/facebook_app_id" />
 
         <activity android:name=".WelcomeActivity" />
->>>>>>> origin/master
     </application>
 
 </manifest>

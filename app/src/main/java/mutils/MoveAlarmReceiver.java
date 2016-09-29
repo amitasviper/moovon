@@ -16,7 +16,7 @@ public class MoveAlarmReceiver extends BroadcastReceiver {
     // Triggered by the Alarm periodically (starts the service to run task)
     @Override
     public void onReceive(Context context, Intent intent) {
-        Intent i = new Intent(context, MyTestService.class);
+        Intent i = new Intent(context, MoveService.class);
         i.putExtra(SettingsActivity.ALERT_TYPE, 2);
         Log.e("MoveAlarmReceiver", "Raising alarm : " + 2);
         context.startService(i);

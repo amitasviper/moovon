@@ -46,14 +46,9 @@ public class MainActivity extends AppCompatActivity implements GoogleApiClient.C
         setContentView(R.layout.activity_main);
 
         initViews();
-<<<<<<< HEAD
-
-        Intent intent = new Intent(this, DashBoard.class);
-        startActivity(intent);
 
         //scheduleAlarm();
-=======
->>>>>>> origin/master
+
     }
 
     private void initViews()
@@ -136,6 +131,13 @@ public class MainActivity extends AppCompatActivity implements GoogleApiClient.C
 
                 String option_text = ((TextView)view).getText().toString();
                 Toast.makeText(MainActivity.this, option_text, Toast.LENGTH_SHORT).show();
+
+                if (option_text.equalsIgnoreCase("Dashboard"))
+                {
+                    Intent intent = new Intent(MainActivity.this, DashBoard.class);
+                    startActivity(intent);
+                    return;
+                }
 
                 if (position < tabLayout.getTabCount())
                 {

@@ -15,6 +15,7 @@ import android.widget.Toast;
 
 import mutils.AppSharedPreferences;
 import mutils.DrinkWaterAlarmReceiver;
+import mutils.MoveAlarmReceiver;
 
 public class SettingsActivity extends AppCompatActivity {
 
@@ -39,7 +40,11 @@ public class SettingsActivity extends AppCompatActivity {
     }
 
     public void cancelAlarm(int alertType) {
-        Intent intent = new Intent(getApplicationContext(), DrinkWaterAlarmReceiver.class);
+        Intent intent;
+        if (alertType == ALERT_WATER)
+            intent = new Intent(getApplicationContext(), DrinkWaterAlarmReceiver.class);
+        else
+            intent = new Intent(getApplicationContext(), MoveAlarmReceiver.class);
         final PendingIntent pIntent = PendingIntent.getBroadcast(this,alertType,
                 intent, PendingIntent.FLAG_UPDATE_CURRENT);
         AlarmManager alarm = (AlarmManager) this.getSystemService(Context.ALARM_SERVICE);
@@ -48,7 +53,11 @@ public class SettingsActivity extends AppCompatActivity {
 
     public void scheduleAlarm(int alertType, int seconds) {
         // Construct an intent that will execute the AlarmReceiver
-        Intent intent = new Intent(getApplicationContext(), DrinkWaterAlarmReceiver.class);
+        Intent intent;
+        if (alertType == ALERT_WATER)
+            intent = new Intent(getApplicationContext(), DrinkWaterAlarmReceiver.class);
+        else
+            intent = new Intent(getApplicationContext(), MoveAlarmReceiver.class);
         intent.putExtra(ALERT_TYPE, alertType);
         // Create a PendingIntent to be triggered when the alarm goes off
         final PendingIntent pIntent = PendingIntent.getBroadcast(this, alertType,

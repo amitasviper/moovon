@@ -14,19 +14,19 @@ import com.appradar.viper.moovon.SettingsActivity;
 /**
  * Created by viper on 29/09/16.
  */
-public class MyTestService extends IntentService {
+public class DrinkWaterService extends IntentService {
 
     private int NotificationId = 1;
 
-    public MyTestService() {
-        super("MyTestService");
+    public DrinkWaterService() {
+        super("DrinkWaterService");
     }
 
     @Override
     protected void onHandleIntent(Intent intent) {
         // Do the task here
         int alert_type = intent.getIntExtra(SettingsActivity.ALERT_TYPE, 1);
-        Log.i("MyTestService", "Service called for alert type : " + alert_type);
+        Log.i("DrinkWaterService", "Service called for alert type : " + alert_type);
 
         Intent actintent = new Intent(this, SettingsActivity.class);
 
@@ -35,16 +35,12 @@ public class MyTestService extends IntentService {
 
         NotificationCompat.Builder builder = new NotificationCompat.Builder(this);
 
-        String alertText = "";
-        if (alert_type == SettingsActivity.ALERT_WATER)
-            alertText = "Drinking water alert";
-        if (alert_type == SettingsActivity.ALERT_MOVE)
-            alertText = "Move around alert";
+        String alertText = "Drinking water alert";
         builder.setContentText(alertText);
         builder.setDefaults(Notification.DEFAULT_SOUND);
         builder.setSmallIcon( R.mipmap.ic_launcher );
         builder.setContentTitle( getString( R.string.app_name ) );
         builder.setContentIntent(pIntent);
-        NotificationManagerCompat.from(this).notify(NotificationId++, builder.build());
+        NotificationManagerCompat.from(this).notify(1, builder.build());
     }
 }
