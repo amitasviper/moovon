@@ -2,10 +2,12 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.appradar.viper.moovon">
 
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="com.google.android.gms.permission.ACTIVITY_RECOGNITION" />
 
     <application
+        android:name=".GlobalApplication"
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
@@ -25,11 +27,28 @@
             android:exported="false" />
 
         <receiver
-            android:name="mutils.CustomAlarmReceiver"
+            android:name="mutils.DrinkWaterAlarmReceiver"
             android:process=":remote" />
 
+<<<<<<< HEAD
         <activity android:name=".SettingsActivity" />
         <activity android:name=".DashBoard"></activity>
+=======
+        <receiver
+            android:name="mutils.MoveAlarmReceiver"
+            android:process=":remote" />
+
+        <activity
+            android:name=".SettingsActivity"
+            android:windowSoftInputMode="adjustResize" />
+        <activity android:name=".LoginActivity" />
+
+        <meta-data
+            android:name="com.facebook.sdk.ApplicationId"
+            android:value="@string/facebook_app_id" />
+
+        <activity android:name=".WelcomeActivity" />
+>>>>>>> origin/master
     </application>
 
 </manifest>
