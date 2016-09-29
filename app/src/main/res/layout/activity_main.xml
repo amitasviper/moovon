@@ -24,7 +24,26 @@
             android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
             app:popupTheme="@style/ThemeOverlay.AppCompat.Light" />
 
+        <LinearLayout
 
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="horizontal"
+            android:weightSum="2">
+
+            <com.github.mikephil.charting.charts.PieChart
+                android:id="@+id/chartWalkProgress"
+                android:layout_width="0dp"
+                android:layout_height="200dp"
+                android:layout_weight="1"
+                />
+            <com.github.mikephil.charting.charts.PieChart
+                android:id="@+id/chartDrinkProgress"
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:layout_height="200dp"
+                />
+        </LinearLayout>
     </LinearLayout>
 
     <LinearLayout
@@ -72,7 +91,6 @@
             android:gravity="center"
             android:textColor="#fff"
             android:layout_marginLeft="@dimen/activity_horizontal_margin"
-            android:text="testamitasviper@gmail.com"
             android:layout_marginBottom="30dp"
             android:textSize="14sp" />
 

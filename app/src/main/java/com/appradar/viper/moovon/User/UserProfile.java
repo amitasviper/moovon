@@ -11,9 +11,9 @@ import com.google.android.gms.common.api.GoogleApiClient;
 import com.google.android.gms.common.api.ResultCallback;
 import com.google.android.gms.common.api.Status;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.auth.UserInfo;
 import com.google.firebase.database.DatabaseReference;
-import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.Query;
 
@@ -58,6 +58,38 @@ public class UserProfile {
         return FirebaseDatabase.getInstance().getReference(DatabaseNodes.rootUserProfiles).child(userId).child(DatabaseNodes.nodeMoveTarget);
     }
 
+    public static void logout_user(Context context){
+        //Do some task here
+        FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+        if (user != null) {
+            for (UserInfo profile : user.getProviderData()) {
+                // Id of the provider (ex: google.com)
+                String providerId = profile.getProviderId();
+
+                if (providerId == "google.com") {
+                    GoogleSignInOptions gso = new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
+                            .requestIdToken(context.getString(R.string.default_web_client_id))
+                            .requestEmail()
+                            .build();
+                    GoogleApiClient mGoogleApiClient = new GoogleApiClient.Builder(context)
+                            .enableAutoManage((FragmentActivity) context /* FragmentActivity */, (GoogleApiClient.OnConnectionFailedListener) context /* OnConnectionFailedListener */)
+                            .addApi(Auth.GOOGLE_SIGN_IN_API, gso)
+                            .build();
+                    Auth.GoogleSignInApi.signOut(mGoogleApiClient).setResultCallback(
+                            new ResultCallback<Status>() {
+                                @Override
+                                public void onResult(Status status) {
+                                    // ...
+                                }
+                            });
+                } else {
+                    LoginManager.getInstance().logOut();
+                }
+            }
+        }
+        FirebaseAuth.getInstance().signOut();
+
+    }
     public static FirebaseUser getCurrentUser()
     {
         if(FirebaseAuth.getInstance().getCurrentUser() != null)
@@ -65,37 +97,5 @@ public class UserProfile {
             return FirebaseAuth.getInstance().getCurrentUser();
         }
         return null;
-    }
-
-    public static void logout_user(Context context){
-        //Do some task here
-        FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
-        if (user != null) {
-            for (UserInfo profile : user.getProviderData()) {
-            // Id of the provider (ex: google.com)
-            String providerId = profile.getProviderId();
-
-            if (providerId == "google.com") {
-            GoogleSignInOptions gso = new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
-                .requestIdToken(context.getString(R.string.default_web_client_id))
-                .requestEmail()
-                .build();
-            GoogleApiClient mGoogleApiClient = new GoogleApiClient.Builder(context)
-                .enableAutoManage((FragmentActivity) context /* FragmentActivity */, (GoogleApiClient.OnConnectionFailedListener) context /* OnConnectionFailedListener */)
-                .addApi(Auth.GOOGLE_SIGN_IN_API, gso)
-                .build();
-            Auth.GoogleSignInApi.signOut(mGoogleApiClient).setResultCallback(new ResultCallback<Status>() {
-                @Override
-                public void onResult(Status status)
-                {
-
-                }
-                });
-            } else {
-                LoginManager.getInstance().logOut();
-                }
-            }
-        }
-        FirebaseAuth.getInstance().signOut();
     }
 }

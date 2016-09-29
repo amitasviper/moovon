@@ -23,11 +23,18 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.appradar.viper.moovon.User.UserProfile;
+import com.github.mikephil.charting.charts.PieChart;
+import com.github.mikephil.charting.data.PieData;
+import com.github.mikephil.charting.data.PieDataSet;
+import com.github.mikephil.charting.data.PieEntry;
 import com.google.android.gms.common.ConnectionResult;
 import com.google.android.gms.common.api.GoogleApiClient;
 import com.google.android.gms.location.ActivityRecognition;
 import com.google.firebase.auth.FirebaseUser;
 import com.squareup.picasso.Picasso;
+
+import java.util.ArrayList;
+import java.util.List;
 
 import mutils.CircleTransform;
 import mutils.RecognizeMotionService;
@@ -38,6 +45,7 @@ public class MainActivity extends AppCompatActivity implements GoogleApiClient.C
 
     DrawerLayout mDrawerLayout;
     ListView mDrawerList;
+    PieChart moveprogress, drinkprogress;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -50,8 +58,7 @@ public class MainActivity extends AppCompatActivity implements GoogleApiClient.C
 
     }
 
-    private void initViews()
-    {
+    private void initViews() {
         // Getting reference to the DrawerLayout
         mDrawerLayout = (DrawerLayout) findViewById(R.id.drawer_layout);
 
@@ -65,7 +72,7 @@ public class MainActivity extends AppCompatActivity implements GoogleApiClient.C
         // Creating an ArrayAdapter to add items to the listview mDrawerList
         ArrayAdapter<String> adapterL = new ArrayAdapter<String>(
                 getBaseContext(),
-                R.layout.drawer_list_item ,
+                R.layout.drawer_list_item,
                 getResources().getStringArray(R.array.options)
         );
 
@@ -85,25 +92,22 @@ public class MainActivity extends AppCompatActivity implements GoogleApiClient.C
 
                 Log.e("setOnItemClickListener", "Position : " + position);
 
-                String option_text = ((TextView)view).getText().toString();
+                String option_text = ((TextView) view).getText().toString();
                 Toast.makeText(MainActivity.this, option_text, Toast.LENGTH_SHORT).show();
 
-                if (option_text.equalsIgnoreCase("Dashboard"))
-                {
+                if (option_text.equalsIgnoreCase("Dashboard")) {
                     Intent intent = new Intent(MainActivity.this, DashBoard.class);
                     startActivity(intent);
                     return;
                 }
 
-                if (option_text.equalsIgnoreCase(getString(R.string.addWater)))
-                {
+                if (option_text.equalsIgnoreCase(getString(R.string.addWater))) {
                     Intent intent = new Intent(MainActivity.this, WaterIntakeActivity.class);
                     startActivity(intent);
                     return;
                 }
 
-                if (option_text.equalsIgnoreCase(getString(R.string.addDistance)))
-                {
+                if (option_text.equalsIgnoreCase(getString(R.string.addDistance))) {
                     Intent intent = new Intent(MainActivity.this, GpsTrackerActivity.class);
                     startActivity(intent);
                     return;
@@ -124,8 +128,42 @@ public class MainActivity extends AppCompatActivity implements GoogleApiClient.C
         mDrawerLayout.setDrawerListener(drawerToggle);
 
         drawerToggle.syncState();
-
         SetupProfileInfo();
+        moveprogress = (PieChart)findViewById(R.id.chartWalkProgress);
+        drinkprogress = (PieChart)findViewById(R.id.chartDrinkProgress);
+
+        float target  = 6.0f;//AppSharedPreferences.getInstance().getPropInteger(AppSharedPreferences.SETTING_MOVEMENT_FREQ);
+        float done = 2.5f;
+        List<PieEntry> entries = new ArrayList<>();
+
+        entries.add(new PieEntry(target- done, "Achieved"));
+        entries.add(new PieEntry(done, "Remaining"));
+
+
+        PieDataSet set = new PieDataSet(entries, "Movement today");
+
+        int[] colors = {getResources().getColor(R.color.graph1), getResources().getColor(R.color.graph2)};
+
+        set.setColors(colors);
+
+        PieData data = new PieData(set);
+        moveprogress.setData(data);
+        moveprogress.invalidate();
+
+        target  = 6.0f;//AppSharedPreferences.getInstance().getPropInteger(AppSharedPreferences.SETTING_MOVEMENT_FREQ);
+        done = 4.5f;
+        entries = new ArrayList<>();
+
+        entries.add(new PieEntry(target- done, "Achieved"));
+        entries.add(new PieEntry(done, "Remaining"));
+
+
+        set = new PieDataSet(entries, "Drinking targets");
+
+        set.setColors(colors);
+        data = new PieData(set);
+        drinkprogress.setData(data);
+        drinkprogress.invalidate();
 
     }
 
@@ -136,15 +174,13 @@ public class MainActivity extends AppCompatActivity implements GoogleApiClient.C
         finish();
     }
 
-    private void SetupProfileInfo()
-    {
+    private void SetupProfileInfo() {
         ImageView iv_profile_image = (ImageView) findViewById(R.id.iv_profile_image);
         TextView iv_profile_name = (TextView) findViewById(R.id.tv_profile_name);
         TextView iv_profile_email = (TextView) findViewById(R.id.tv_profile_email);
         FirebaseUser user = UserProfile.getCurrentUser();
 
-        if (user == null)
-        {
+        if (user == null) {
             return;
         }
 
@@ -156,13 +192,15 @@ public class MainActivity extends AppCompatActivity implements GoogleApiClient.C
 
         iv_profile_name.setText(user.getDisplayName());
         iv_profile_email.setText(user.getEmail());
+        iv_profile_name.setText(UserProfile.getLoggedOnUserDisplayName());
+        iv_profile_email.setText(UserProfile.getLoggedOnUserId());
     }
 
     @Override
     public void onConnected(@Nullable Bundle bundle) {
-        Intent intent = new Intent( this, RecognizeMotionService.class );
-        PendingIntent pendingIntent = PendingIntent.getService( this, 0, intent, PendingIntent.FLAG_UPDATE_CURRENT );
-        ActivityRecognition.ActivityRecognitionApi.requestActivityUpdates( mApiClient, 500, pendingIntent );
+        Intent intent = new Intent(this, RecognizeMotionService.class);
+        PendingIntent pendingIntent = PendingIntent.getService(this, 0, intent, PendingIntent.FLAG_UPDATE_CURRENT);
+        ActivityRecognition.ActivityRecognitionApi.requestActivityUpdates(mApiClient, 500, pendingIntent);
     }
 
     @Override
@@ -175,8 +213,7 @@ public class MainActivity extends AppCompatActivity implements GoogleApiClient.C
 
     }
 
-    private void setupMovemenDetector()
-    {
+    private void setupMovemenDetector() {
         mApiClient.connect();
 
         mApiClient = new GoogleApiClient.Builder(this)
@@ -200,13 +237,13 @@ public class MainActivity extends AppCompatActivity implements GoogleApiClient.C
             Toast.makeText(MainActivity.this, "Home button clicked", Toast.LENGTH_SHORT).show();
         }
 
-        if (menuItem.getItemId() == R.id.logout)
-        {
-            LogOutUser();
+        if (menuItem.getItemId() == R.id.logout) {
+            UserProfile.logout_user(MainActivity.this);
+            startActivity(new Intent(getApplicationContext(), LoginActivity.class));
+            finish();
         }
 
-        if (menuItem.getItemId() == R.id.menu_settings)
-        {
+        if (menuItem.getItemId() == R.id.menu_settings) {
             Intent intent = new Intent(MainActivity.this, SettingsActivity.class);
             startActivity(intent);
         }
