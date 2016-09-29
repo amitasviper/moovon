@@ -208,7 +208,7 @@ public class WelcomeActivity extends AppCompatActivity {
                                 public void onClick(View v) {
                                     //Save
                                     UserProfile.getDrinkTargetReference(UserProfile.getLoggedOnUserId()).setValue(1);
-                                    AppSharedPreferences.getInstance().setPropString(AppSharedPreferences.SETTING_WATER_FREQ, "60");
+                                    AppSharedPreferences.getInstance().setPropInteger(AppSharedPreferences.SETTING_WATER_FREQ, 60);
                                     moveToNextPage();
                                 }
                             });
@@ -218,7 +218,7 @@ public class WelcomeActivity extends AppCompatActivity {
                                 public void onClick(View v) {
                                     //Save
                                     UserProfile.getDrinkTargetReference(UserProfile.getLoggedOnUserId()).setValue(2);
-                                    AppSharedPreferences.getInstance().setPropString(AppSharedPreferences.SETTING_WATER_FREQ, "120");
+                                    AppSharedPreferences.getInstance().setPropInteger(AppSharedPreferences.SETTING_WATER_FREQ, 120);
 
                                     moveToNextPage();
                                 }
@@ -229,7 +229,7 @@ public class WelcomeActivity extends AppCompatActivity {
                                 public void onClick(View v) {
                                     //Save
                                     UserProfile.getDrinkTargetReference(UserProfile.getLoggedOnUserId()).setValue(3);
-                                    AppSharedPreferences.getInstance().setPropString(AppSharedPreferences.SETTING_WATER_FREQ, "180");
+                                    AppSharedPreferences.getInstance().setPropInteger(AppSharedPreferences.SETTING_WATER_FREQ, 180);
                                     moveToNextPage();
                                 }
                             });
@@ -256,7 +256,7 @@ public class WelcomeActivity extends AppCompatActivity {
                                 public void onClick(View v) {
                                     //Save
                                     UserProfile.getMoveTargetReference(UserProfile.getLoggedOnUserId()).setValue(1);
-                                    AppSharedPreferences.getInstance().setPropString(AppSharedPreferences.SETTING_MOVEMENT_FREQ, "60");
+                                    AppSharedPreferences.getInstance().setPropInteger(AppSharedPreferences.SETTING_MOVEMENT_FREQ, 60);
                                     moveToNextPage();
                                 }
                             });
@@ -266,7 +266,7 @@ public class WelcomeActivity extends AppCompatActivity {
                                 public void onClick(View v) {
                                     //Save
                                     UserProfile.getMoveTargetReference(UserProfile.getLoggedOnUserId()).setValue(2);
-                                    AppSharedPreferences.getInstance().setPropString(AppSharedPreferences.SETTING_MOVEMENT_FREQ, "120");
+                                    AppSharedPreferences.getInstance().setPropInteger(AppSharedPreferences.SETTING_MOVEMENT_FREQ, 120);
                                     moveToNextPage();
                                 }
                             });
@@ -276,7 +276,7 @@ public class WelcomeActivity extends AppCompatActivity {
                                 public void onClick(View v) {
                                     //Save
                                     UserProfile.getMoveTargetReference(UserProfile.getLoggedOnUserId()).setValue(3);
-                                    AppSharedPreferences.getInstance().setPropString(AppSharedPreferences.SETTING_MOVEMENT_FREQ, "180");
+                                    AppSharedPreferences.getInstance().setPropInteger(AppSharedPreferences.SETTING_MOVEMENT_FREQ, 180);
                                     moveToNextPage();
                                 }
                             });
