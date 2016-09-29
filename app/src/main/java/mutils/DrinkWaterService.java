@@ -10,6 +10,7 @@ import android.util.Log;
 
 import com.appradar.viper.moovon.R;
 import com.appradar.viper.moovon.SettingsActivity;
+import com.appradar.viper.moovon.WaterIntakeActivity;
 
 /**
  * Created by viper on 29/09/16.
@@ -28,7 +29,7 @@ public class DrinkWaterService extends IntentService {
         int alert_type = intent.getIntExtra(SettingsActivity.ALERT_TYPE, 1);
         Log.i("DrinkWaterService", "Service called for alert type : " + alert_type);
 
-        Intent actintent = new Intent(this, SettingsActivity.class);
+        Intent actintent = new Intent(this, WaterIntakeActivity.class);
 
         PendingIntent pIntent = PendingIntent.getActivity(this, 1,
                 actintent, PendingIntent.FLAG_UPDATE_CURRENT);
@@ -41,6 +42,7 @@ public class DrinkWaterService extends IntentService {
         builder.setSmallIcon( R.mipmap.ic_launcher );
         builder.setContentTitle( getString( R.string.app_name ) );
         builder.setContentIntent(pIntent);
+        builder.setAutoCancel(true);
         NotificationManagerCompat.from(this).notify(1, builder.build());
     }
 }

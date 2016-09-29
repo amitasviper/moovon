@@ -8,6 +8,7 @@ import android.widget.Button;
 import android.widget.TextView;
 
 import mutils.GPSTracker;
+import mutils.UserProgress;
 
 public class GpsTrackerActivity extends AppCompatActivity {
 
@@ -68,9 +69,9 @@ public class GpsTrackerActivity extends AppCompatActivity {
 
                     if(location2.getAccuracy()<10)
                     {
-                        double distanceInMeters = location1.distanceTo(location2);
-                        String text = String.valueOf(distanceInMeters);
-                        textViewLocation.setText(text);
+                        int distanceInMeters = (int)location1.distanceTo(location2);
+                        textViewLocation.setText("Distance Travelled : " + distanceInMeters + " meters");
+                        UserProgress.getInstance().addNewWalkingProgress((long)distanceInMeters);
 
                     }
 

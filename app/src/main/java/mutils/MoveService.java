@@ -42,6 +42,7 @@ public class MoveService extends IntentService {
         builder.setSmallIcon( R.mipmap.ic_launcher );
         builder.setContentTitle( getString( R.string.app_name ) );
         builder.setContentIntent(pIntent);
+        builder.setAutoCancel(true);
         NotificationManagerCompat.from(this).notify(2, builder.build());
     }
 }

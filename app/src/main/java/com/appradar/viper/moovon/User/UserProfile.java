@@ -1,7 +1,11 @@
 package com.appradar.viper.moovon.User;
 
 import com.google.firebase.auth.FirebaseAuth;
+<<<<<<< Updated upstream
 import com.google.firebase.database.DatabaseReference;
+=======
+import com.google.firebase.auth.FirebaseUser;
+>>>>>>> Stashed changes
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.Query;
 
@@ -36,6 +40,7 @@ public class UserProfile {
         return "Guest";
     }
 
+<<<<<<< Updated upstream
     public static DatabaseReference getDrinkTargetReference(String userId)
     {
         return FirebaseDatabase.getInstance().getReference(DatabaseNodes.rootUserProfiles).child(userId).child(DatabaseNodes.nodeDrinkTarget);
@@ -46,4 +51,14 @@ public class UserProfile {
         return FirebaseDatabase.getInstance().getReference(DatabaseNodes.rootUserProfiles).child(userId).child(DatabaseNodes.nodeMoveTarget);
     }
 
+=======
+    public static FirebaseUser getCurrentUser()
+    {
+        if(FirebaseAuth.getInstance().getCurrentUser() != null)
+        {
+            return FirebaseAuth.getInstance().getCurrentUser();
+        }
+        return null;
+    }
+>>>>>>> Stashed changes
 }

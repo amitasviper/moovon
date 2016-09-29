@@ -1,27 +1,40 @@
 <resources>
     <string name="app_name">Moovon</string>
 
+    <string name="dashboard">Dashboard</string>
+    <string name="addWater">Add Water</string>
+    <string name="addDistance">Add Distance</string>
+    <string name="option1">Option #1</string>
+    <string name="option2">Option #2</string>
+    <string name="option3">Option #3</string>
+    <string name="logout">Logout</string>
+
     <string-array name="options">
-        <item>Dashboard</item>
-        <item>Option #2</item>
-        <item>Option #3</item>
-        <item>Option #4</item>
-        <item>Option #5</item>
+        <item>@string/dashboard</item>
+        <item>@string/addWater</item>
+        <item>@string/addDistance</item>
+        <item>@string/option1</item>
+        <item>@string/option2</item>
+        <item>@string/option3</item>
         <item>Rate Us</item>
         <item>Invite</item>
-        <item>Logout</item>
+        <item>@string/logout</item>
     </string-array>
 
     <string name="drawer_open">Open navigation drawer</string>
     <string name="drawer_close">Close navigation drawer</string>
 
+    <!-- Strings related to Settings -->
     <string name="gender">Gender</string>
     <string name="age">Age</string>
     <string name="notification_heading">How frequently you want to get notified for below activities</string>
     <string name="notification_freq_water">Water</string>
     <string name="notification_freq_movement">Movement</string>
 
-    // dash board lable
+    <!-- Strings related to Water Intake activity -->
+    <string name="label_water_capacity">Amount of H2O you took</string>
+
+    <!-- dash board lable -->
     <string name="walk_progress_lable">Walk Progress</string>
     <string name="Water_drink_progress_lable">Water drink progress</string>
 

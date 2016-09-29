@@ -19,15 +19,20 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.appradar.viper.moovon.User.UserProfile;
 import com.google.android.gms.common.ConnectionResult;
 import com.google.android.gms.common.api.GoogleApiClient;
 import com.google.android.gms.location.ActivityRecognition;
+import com.google.firebase.auth.FirebaseUser;
+import com.squareup.picasso.Picasso;
 
 import fragments.Pager;
+import mutils.CircleTransform;
 import mutils.RecognizeMotionService;
 
 public class MainActivity extends AppCompatActivity implements GoogleApiClient.ConnectionCallbacks, GoogleApiClient.OnConnectionFailedListener {
@@ -139,6 +144,18 @@ public class MainActivity extends AppCompatActivity implements GoogleApiClient.C
                     return;
                 }
 
+                if (option_text.equalsIgnoreCase(getString(R.string.addWater)))
+                {
+                    Intent intent = new Intent(MainActivity.this, WaterIntakeActivity.class);
+                    startActivity(intent);
+                }
+
+                if (option_text.equalsIgnoreCase(getString(R.string.addDistance)))
+                {
+                    Intent intent = new Intent(MainActivity.this, GpsTrackerActivity.class);
+                    startActivity(intent);
+                }
+
                 if (position < tabLayout.getTabCount())
                 {
                     viewPager.setCurrentItem(position);
@@ -155,6 +172,30 @@ public class MainActivity extends AppCompatActivity implements GoogleApiClient.C
 
         drawerToggle.syncState();
 
+        SetupProfileInfo();
+
+    }
+
+    private void SetupProfileInfo()
+    {
+        ImageView iv_profile_image = (ImageView) findViewById(R.id.iv_profile_image);
+        TextView iv_profile_name = (TextView) findViewById(R.id.tv_profile_name);
+        TextView iv_profile_email = (TextView) findViewById(R.id.tv_profile_email);
+        FirebaseUser user = UserProfile.getCurrentUser();
+
+        if (user == null)
+        {
+            return;
+        }
+
+        Picasso.with(MainActivity.this)
+                .load(user.getPhotoUrl())
+                .resize(80, 80)
+                .transform(new CircleTransform())
+                .into(iv_profile_image);
+
+        iv_profile_name.setText(user.getDisplayName());
+        iv_profile_email.setText(user.getEmail());
     }
 
     @Override
