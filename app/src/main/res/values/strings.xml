@@ -1,0 +1,24 @@
+<resources>
+    <string name="app_name">Moovon</string>
+
+    <string-array name="options">
+        <item>Option #1</item>
+        <item>Option #2</item>
+        <item>Option #3</item>
+        <item>Option #4</item>
+        <item>Option #5</item>
+        <item>Rate Us</item>
+        <item>Invite</item>
+        <item>Logout</item>
+    </string-array>
+
+    <string name="drawer_open">Open navigation drawer</string>
+    <string name="drawer_close">Close navigation drawer</string>
+
+    <string name="gender">Gender</string>
+    <string name="age">Age</string>
+    <string name="notification_heading">How frequently you want to get notified for below activities</string>
+    <string name="notification_freq_water">Water</string>
+    <string name="notification_freq_movement">Movement</string>
+
+</resources>
