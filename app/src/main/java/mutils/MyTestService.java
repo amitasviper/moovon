@@ -26,7 +26,7 @@ public class MyTestService extends IntentService {
         Log.i("MyTestService", "Service running");
 
         NotificationCompat.Builder builder = new NotificationCompat.Builder(this);
-        builder.setContentText("Alarm triggered");
+        builder.setContentText("Drink water alert");
         builder.setDefaults(Notification.DEFAULT_SOUND);
         builder.setSmallIcon( R.mipmap.ic_launcher );
         builder.setContentTitle( getString( R.string.app_name ) );
