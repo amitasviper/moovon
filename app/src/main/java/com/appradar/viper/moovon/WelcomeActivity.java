@@ -15,8 +15,14 @@ import android.view.ViewGroup;
 import android.view.Window;
 import android.view.WindowManager;
 import android.widget.Button;
+import android.widget.CompoundButton;
 import android.widget.LinearLayout;
+import android.widget.Switch;
 import android.widget.TextView;
+
+import com.appradar.viper.moovon.User.UserProfile;
+
+import mutils.AppSharedPreferences;
 
 public class WelcomeActivity extends AppCompatActivity {
 
@@ -54,8 +60,7 @@ public class WelcomeActivity extends AppCompatActivity {
         // add few more layouts if you want
         layouts = new int[]{
                 R.layout.userinfo_drink_targets,
-                R.layout.userinfo_movingtargets,
-                R.layout.usernifo_remindme,};
+                R.layout.userinfo_movingtargets};
 
         // adding bottom dots
         addBottomDots(0);
@@ -72,6 +77,11 @@ public class WelcomeActivity extends AppCompatActivity {
             public void onClick(View v) {
                 // checking for last page
                 // if last page home screen will be launched
+                int currentpage = viewPager.getCurrentItem();
+                switch (currentpage){
+                    case 0:
+
+                }
                 int current = getItem(+1);
                 if (current < layouts.length) {
                     // move to next screen
@@ -119,7 +129,7 @@ public class WelcomeActivity extends AppCompatActivity {
     }
 
     private void launchHomeScreen() {
-//        UserProfile currentUser = new UserProfile(UserProfile.getLoggedOnUserDisplayName(), reasonToJoinArmy, experience, occupation);
+//        UserProfile currentUser = new UserProfile(UserProfileNode.getLoggedOnUserDisplayName(), reasonToJoinArmy, experience, occupation);
 //        UserProfileNode.getUserProfile(UserProfileNode.getLoggedOnUserId()).getRef().updateChildren(currentUser.toMap());
         startActivity(new Intent(WelcomeActivity.this, MainActivity.class));
         finish();
@@ -135,7 +145,7 @@ public class WelcomeActivity extends AppCompatActivity {
             // changing the next button text 'NEXT' / 'GOT IT'
             if (position == layouts.length - 1) {
                 // last page. make button text to GOT IT
-                btnNext.setText(getString(R.string.start));
+                btnNext.setText(getString(R.string.done));
             } else {
                 // still pages are left
                 btnNext.setText(getString(R.string.next));
@@ -177,27 +187,102 @@ public class WelcomeActivity extends AppCompatActivity {
         public Object instantiateItem(ViewGroup container, int position) {
             layoutInflater = (LayoutInflater) getSystemService(Context.LAYOUT_INFLATER_SERVICE);
 
-            View view = layoutInflater.inflate(layouts[position], container, false);
+            final View view = layoutInflater.inflate(layouts[position], container, false);
             container.addView(view);
-            if(position == 1)
-            {
-//                Button studentOccupation = (Button) view.findViewById(R.id.button_school);
-//                studentOccupation.setOnClickListener(new View.OnClickListener() {
-//                    @Override
-//                    public void onClick(View v) {
-//                        moveToNextPage();
-//                    }
-//                });
-                moveToNextPage();
-            }
-            else if(position == 2)
-            {
-                moveToNextPage();
-            }
-            if(position == 3)
-            {
-                moveToNextPage();
+            if(position == 0) {
+                final Switch aSwitch = (Switch) view.findViewById(R.id.drink_switch);
+                final LinearLayout linearLayout = (LinearLayout)view.findViewById(R.id.drink_layout_take_info);
+                aSwitch.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+                    @Override
+                    public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                        if(linearLayout.getVisibility() == View.GONE) {
+                            linearLayout.setVisibility(View.VISIBLE);
+                            Button btn1hr = (Button) view.findViewById(R.id.drink_btn1hr);
+                            Button btn2hr = (Button) view.findViewById(R.id.drink_btn2hr);
+                            Button btn3hr = (Button) view.findViewById(R.id.drink_btn3hr);
+                            btn1hr.setOnClickListener(new View.OnClickListener() {
+                                @Override
+                                public void onClick(View v) {
+                                    //Save
+                                    UserProfile.getDrinkTargetReference(UserProfile.getLoggedOnUserId()).setValue(1);
+                                    AppSharedPreferences.getInstance().setPropString(AppSharedPreferences.SETTING_WATER_FREQ, "60");
+                                    moveToNextPage();
+                                }
+                            });
 
+                            btn2hr.setOnClickListener(new View.OnClickListener() {
+                                @Override
+                                public void onClick(View v) {
+                                    //Save
+                                    UserProfile.getDrinkTargetReference(UserProfile.getLoggedOnUserId()).setValue(2);
+                                    AppSharedPreferences.getInstance().setPropString(AppSharedPreferences.SETTING_WATER_FREQ, "120");
+
+                                    moveToNextPage();
+                                }
+                            });
+
+                            btn3hr.setOnClickListener(new View.OnClickListener() {
+                                @Override
+                                public void onClick(View v) {
+                                    //Save
+                                    UserProfile.getDrinkTargetReference(UserProfile.getLoggedOnUserId()).setValue(3);
+                                    AppSharedPreferences.getInstance().setPropString(AppSharedPreferences.SETTING_WATER_FREQ, "180");
+                                    moveToNextPage();
+                                }
+                            });
+
+                        }else{
+                            linearLayout.setVisibility(View.GONE);
+                        }
+                    }
+                });
+            }
+            else if(position == 1) {
+                final Switch aSwitch = (Switch) view.findViewById(R.id.move_switch);
+                final LinearLayout linearLayout = (LinearLayout)view.findViewById(R.id.move_layout_take_info);
+                aSwitch.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+                    @Override
+                    public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                        if(linearLayout.getVisibility() == View.GONE) {
+                            linearLayout.setVisibility(View.VISIBLE);
+                            Button btn1hr = (Button) view.findViewById(R.id.move_btn1hr);
+                            Button btn2hr = (Button) view.findViewById(R.id.move_btn2hr);
+                            Button btn3hr = (Button) view.findViewById(R.id.move_btn3hr);
+                            btn1hr.setOnClickListener(new View.OnClickListener() {
+                                @Override
+                                public void onClick(View v) {
+                                    //Save
+                                    UserProfile.getMoveTargetReference(UserProfile.getLoggedOnUserId()).setValue(1);
+                                    AppSharedPreferences.getInstance().setPropString(AppSharedPreferences.SETTING_MOVEMENT_FREQ, "60");
+                                    moveToNextPage();
+                                }
+                            });
+
+                            btn2hr.setOnClickListener(new View.OnClickListener() {
+                                @Override
+                                public void onClick(View v) {
+                                    //Save
+                                    UserProfile.getMoveTargetReference(UserProfile.getLoggedOnUserId()).setValue(2);
+                                    AppSharedPreferences.getInstance().setPropString(AppSharedPreferences.SETTING_MOVEMENT_FREQ, "120");
+                                    moveToNextPage();
+                                }
+                            });
+
+                            btn3hr.setOnClickListener(new View.OnClickListener() {
+                                @Override
+                                public void onClick(View v) {
+                                    //Save
+                                    UserProfile.getMoveTargetReference(UserProfile.getLoggedOnUserId()).setValue(3);
+                                    AppSharedPreferences.getInstance().setPropString(AppSharedPreferences.SETTING_MOVEMENT_FREQ, "180");
+                                    moveToNextPage();
+                                }
+                            });
+
+                        }else{
+                            linearLayout.setVisibility(View.GONE);
+                        }
+                    }
+                });
             }
             return view;
         }

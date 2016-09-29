@@ -47,5 +47,14 @@
         <item name="android:textSize">36sp</item>
     </style>
 
+    <style name="Buttonchoice_drink">
+        <item name="android:padding">16dp</item>
+        <item name="android:background">@color/dot_dark_screen1</item>
+    </style>
+
+    <style name="Buttonchoice_move">
+        <item name="android:padding">16dp</item>
+        <item name="android:background">@color/dot_dark_screen4</item>
+    </style>
 
 </resources>

@@ -1,7 +1,74 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="vertical" android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/place_autocomplete_prediction_primary_text">
+    android:background="@color/dot_dark_screen1"
+    >
+    <ImageView
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="50dp"
+        android:layout_marginBottom="30dp"
+        android:id="@+id/drink.image"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:src="@drawable/bottle"/>
+    <TextView
+        android:layout_centerHorizontal="true"
 
-</LinearLayout>
+        android:id="@+id/drink.heading"
+        android:layout_below="@id/drink.image"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Tell us about your Targets"
+        android:textSize="@dimen/txt_heading"
+        />
+    <Switch
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:id="@+id/drink.switch"
+        android:layout_centerHorizontal="true"
+        android:layout_below="@id/drink.heading"
+        android:textSize="@dimen/txt_description"
+        android:text="I would like to be reminded" />
+    <LinearLayout
+        android:layout_centerHorizontal="true"
+        android:gravity="center_horizontal"
+        android:id="@+id/drink.layout_take_info"
+        android:layout_below="@id/drink.switch"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:visibility="gone"
+        >
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="@dimen/txt_description"
+            android:text="At interval(Hrs) of:"
+            />
+        <Button
+            style="@style/Buttonchoice_drink"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center_horizontal"
+            android:text="1"
+            android:id="@+id/drink.btn1hr"/>
+        <Button
+            style="@style/Buttonchoice_drink"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center_horizontal"
+            android:text="2"
+            android:id="@+id/drink.btn2hr"/>
+        <Button
+            style="@style/Buttonchoice_drink"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center_horizontal"
+            android:text="3"
+            android:id="@+id/drink.btn3hr"/>
+    </LinearLayout>
+
+
+</RelativeLayout>

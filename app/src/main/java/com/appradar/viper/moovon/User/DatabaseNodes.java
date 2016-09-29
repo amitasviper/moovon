@@ -7,4 +7,9 @@ package com.appradar.viper.moovon.User;
 public class DatabaseNodes {
 
     public  static String rootUserProfiles = "User";
+    public  static String rootUserMovement = "Movement";
+
+    public  static String nodeDrinkTarget = "targetdrink";
+    public  static String nodeMoveTarget = "movedrink";
+
 }

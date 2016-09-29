@@ -76,5 +76,6 @@
     <string name="facebook_app_id">1769756766625168</string>
     <string name="next">Next</string>
     <string name="start">Start</string>
+    <string name="done">Done</string>
 
 </resources>
