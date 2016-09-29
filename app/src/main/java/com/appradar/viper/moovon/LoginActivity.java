@@ -130,7 +130,6 @@ public class LoginActivity  extends AppCompatActivity implements
                 Log.d(TAG, "facebook:onSuccess:" + loginResult);
                 handleFacebookAccessToken(loginResult.getAccessToken());
                 Toast.makeText(LoginActivity.this, "LoginSucces", Toast.LENGTH_SHORT);
-                Go_To_HomePage();
             }
 
             @Override
@@ -191,7 +190,6 @@ public class LoginActivity  extends AppCompatActivity implements
                     // Google Sign In was successful, authenticate with Firebase
                     GoogleSignInAccount account = result.getSignInAccount();
                     firebaseAuthWithGoogle(account);
-                    Go_To_HomePage();
                 } else {
                     // Google Sign In failed, update UI appropriately
                     // [START_EXCLUDE]

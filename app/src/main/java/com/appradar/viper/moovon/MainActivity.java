@@ -148,12 +148,20 @@ public class MainActivity extends AppCompatActivity implements GoogleApiClient.C
                 {
                     Intent intent = new Intent(MainActivity.this, WaterIntakeActivity.class);
                     startActivity(intent);
+                    return;
                 }
 
                 if (option_text.equalsIgnoreCase(getString(R.string.addDistance)))
                 {
                     Intent intent = new Intent(MainActivity.this, GpsTrackerActivity.class);
                     startActivity(intent);
+                    return;
+                }
+
+                if (option_text.equalsIgnoreCase(getString(R.string.logout)))
+                {
+                    UserProfile.logout_user(MainActivity.this);
+                    return;
                 }
 
                 if (position < tabLayout.getTabCount())
@@ -242,7 +250,7 @@ public class MainActivity extends AppCompatActivity implements GoogleApiClient.C
 
         if (menuItem.getItemId() == R.id.logout)
         {
-            //Do some task here
+            UserProfile.logout_user(MainActivity.this);
         }
 
         if (menuItem.getItemId() == R.id.menu_settings)

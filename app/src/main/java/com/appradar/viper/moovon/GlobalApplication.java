@@ -11,6 +11,7 @@ public class GlobalApplication extends Application {
     private static GlobalApplication mInstance;
     public static volatile Handler applicationHandler = null;
 
+
     @Override
     public void onCreate() {
         super.onCreate();
