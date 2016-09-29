@@ -28,7 +28,8 @@
             android:name="mutils.CustomAlarmReceiver"
             android:process=":remote" />
 
-        <activity android:name=".SettingsActivity"></activity>
+        <activity android:name=".SettingsActivity" />
+        <activity android:name=".DashBoard"></activity>
     </application>
 
 </manifest>

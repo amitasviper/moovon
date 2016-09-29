@@ -2,7 +2,7 @@ apply plugin: 'com.android.application'
 
 android {
     compileSdkVersion 23
-    buildToolsVersion "23.0.2"
+    buildToolsVersion "24.0.1"
 
     defaultConfig {
         applicationId "com.appradar.viper.moovon"
@@ -33,4 +33,5 @@ dependencies {
     compile 'com.android.support:design:23.4.0'
 
     compile 'com.github.PhilJay:MPAndroidChart:v3.0.0-beta1'
+    //compile 'com.github.PhilJay:MPAndroidChart:v3.0.0-beta1'
 }

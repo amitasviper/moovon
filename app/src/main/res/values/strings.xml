@@ -21,4 +21,8 @@
     <string name="notification_freq_water">Water</string>
     <string name="notification_freq_movement">Movement</string>
 
+    // dash board lable
+    <string name="walk_progress_lable">Walk Progress</string>
+    <string name="Water_drink_progress_lable">Water drink progress</string>
+
 </resources>

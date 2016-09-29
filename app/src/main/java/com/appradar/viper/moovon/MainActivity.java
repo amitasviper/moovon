@@ -50,6 +50,9 @@ public class MainActivity extends AppCompatActivity implements GoogleApiClient.C
 
         initViews();
 
+        Intent intent = new Intent(this, DashBoard.class);
+        startActivity(intent);
+
         //scheduleAlarm();
     }
 
