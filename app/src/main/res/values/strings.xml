@@ -12,10 +12,10 @@
     <string-array name="options">
         <item>@string/dashboard</item>
         <item>@string/addWater</item>
-        <item>@string/addDistance</item>
+        <!--<item>@string/addDistance</item>-->
         <item>@string/maps2</item>
-        <item>@string/sensorTrack</item>
-        <item>@string/option3</item>
+        <!--<item>@string/sensorTrack</item>-->
+        <!--<item>@string/option3</item>-->
         <item>Rate Us</item>
         <item>Invite</item>
         <item>@string/logout</item>

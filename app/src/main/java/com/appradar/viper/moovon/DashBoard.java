@@ -38,32 +38,32 @@ public class DashBoard extends AppCompatActivity {
 //        listWaterDrinkInfo = new ArrayList<WaterDrinkInfo>();
 //        listWalkIimeInfo = new ArrayList<WalkTimeInfo>();
 
-        final RadioGroup rgbDrinkWaterProgress = (RadioGroup) findViewById(R.id.rgbDrinkWaterProgress);
-
-        rgbDrinkWaterProgress.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
-            @Override
-            public void onCheckedChanged(RadioGroup radioGroup, int checkedId) {
-
-                // Method 1 For Getting Index of RadioButton
-               int pos=rgbDrinkWaterProgress.indexOfChild(findViewById(checkedId));
-                switch (pos)
-                {
-                    case 0 :
-
-                        break;
-                    case 1 :
-
-                        break;
-                    case 2 :
-
-                        break;
-                    default :
-                        //The default selection is RadioButton 1
-
-                        break;
-                }
-            }
-        });
+//        final RadioGroup rgbDrinkWaterProgress = (RadioGroup) findViewById(R.id.rgbDrinkWaterProgress);
+//
+//        rgbDrinkWaterProgress.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
+//            @Override
+//            public void onCheckedChanged(RadioGroup radioGroup, int checkedId) {
+//
+//                // Method 1 For Getting Index of RadioButton
+//               int pos=rgbDrinkWaterProgress.indexOfChild(findViewById(checkedId));
+//                switch (pos)
+//                {
+//                    case 0 :
+//
+//                        break;
+//                    case 1 :
+//
+//                        break;
+//                    case 2 :
+//
+//                        break;
+//                    default :
+//                        //The default selection is RadioButton 1
+//
+//                        break;
+//                }
+//            }
+//        });
 
         // create walk info chart
         //CreateWalkProgressChart();
@@ -73,50 +73,87 @@ public class DashBoard extends AppCompatActivity {
         // create water drink progress chart
         //CreateWaterDrinkProgressChart();
         getDailyWaterReport();
-
+        //getDayWiseDifference(7, UserProgress.getInstance().rootPaani);
 
     }
 
 
-//    public void getWaterReport(int nDays){
-//
-//        // to do - days diff is not correctly handled
-//        // it
+//    public void getDayWiseDifference( final int nDays, final String childNode)
+//    {
 //
 //        final UserProgress up = UserProgress.getInstance();
-//        String year = String.valueOf(up.getCurrentYear());
-//        String month = String.valueOf(up.getCurrentMonth());
+//        int day = up.getCurrentDay();
+//        int year = up.getCurrentYear();
+//        int month = up.getCurrentMonth();
+//        int noOfDays = 0;
 //
-//        Calendar c = Calendar.getInstance();
+//        int daysInMonth[] = { 31, 28, 31,30,31,30,31,31,30,31,30,31};
 //
-//        int hours = c.get(Calendar.HOUR);
-//        int minutes = c.get(Calendar.MINUTE);
-//
-//
-//        for(int day=1; day <= nDays; day++)
+//        while(noOfDays++ < nDays )
 //        {
-//            final int nDate = day;
-//            up.getMonthlyProgressReference(year, month, up.rootChal).getRef().child(String.valueOf(day)).child(up.childCount).addListenerForSingleValueEvent(new ValueEventListener() {
-//                @Override
-//                public void onDataChange(DataSnapshot dataSnapshot) {
-//                    if(dataSnapshot.exists() )
-//                    {
-//                        long consumptionCount = dataSnapshot.getValue(long.class);
-//                        // process data here
+//            if(day > 0)
+//            {
+//                final int nDate = noOfDays;
+//                String sDay = String.valueOf(day);
+//                day--;
 //
-//                        listWaterDrinkInfo.add(new WaterDrinkInfo((float)nDate, consumptionCount));
+//                up.getMonthlyProgressReference(String.valueOf(year), String.valueOf(month), childNode).getRef().child(sDay).child(up.childCount).addListenerForSingleValueEvent(new ValueEventListener() {
+//                    @Override
+//                    public void onDataChange(DataSnapshot dataSnapshot) {
+//                        if(dataSnapshot.exists() )
+//                        {
+//                            long consumptionCount = dataSnapshot.getValue(long.class);
+//                            // process data here
+//
+//
+//                            if(nDate == nDays-1)
+//                            {
+//                                if(childNode.equalsIgnoreCase(up.rootPaani)) {
+//                                    CreateWaterDrinkProgressChart();
+//                                }
+//                                else
+//                                {
+//                                    CreateWalkProgressChart();
+//                                }
+//                            }
+//                            else
+//                            {
+//                                if(childNode.equalsIgnoreCase(up.rootPaani)) {
+//                                    listWaterDrinkInfo.add(new WaterDrinkInfo((float)nDate, consumptionCount));
+//                                }
+//                                else
+//                                {
+//                                    //listWalkIimeInfo.add();
+//                                }
+//                            }
+//                        }
 //                    }
+//
+//                    @Override
+//                    public void onCancelled(DatabaseError databaseError) {
+//
+//                    }
+//
+//
+//                });
+//            }
+//            else
+//            {
+//                if(month == 1)
+//                {
+//                    month = 12;
+//                    year--;
 //                }
-//
-//                @Override
-//                public void onCancelled(DatabaseError databaseError) {
-//
+//                else
+//                {
+//                    month--;
 //                }
+//                day = daysInMonth[month-1];
+//                noOfDays--;
 //
-//
-//            });
+//            }
 //        }
-//        CreateWaterDrinkProgressChart();
+//
 //    }
 
     public void getDailyWalkReport(){

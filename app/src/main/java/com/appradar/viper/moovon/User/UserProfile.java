@@ -11,17 +11,15 @@ import com.google.android.gms.common.api.GoogleApiClient;
 import com.google.android.gms.common.api.ResultCallback;
 import com.google.android.gms.common.api.Status;
 import com.google.firebase.auth.FirebaseAuth;
-<<<<<<< Updated upstream
+
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.auth.UserInfo;
 import com.google.firebase.database.DatabaseReference;
-=======
 
 import com.google.firebase.database.DatabaseReference;
 
 import com.google.firebase.auth.FirebaseUser;
 
->>>>>>> Stashed changes
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.Query;
 
@@ -58,10 +56,7 @@ public class UserProfile {
         return "Guest";
     }
 
-<<<<<<< Updated upstream
-=======
 
->>>>>>> Stashed changes
     public static DatabaseReference getDrinkTargetReference(String userId)
     {
         return FirebaseDatabase.getInstance().getReference(DatabaseNodes.rootUserProfiles).child(userId).child(DatabaseNodes.nodeDrinkTarget);
@@ -72,7 +67,7 @@ public class UserProfile {
         return FirebaseDatabase.getInstance().getReference(DatabaseNodes.rootUserProfiles).child(userId).child(DatabaseNodes.nodeMoveTarget);
     }
 
-<<<<<<< Updated upstream
+
     public static void logout_user(Context context){
         //Do some task here
         FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
@@ -105,9 +100,7 @@ public class UserProfile {
         FirebaseAuth.getInstance().signOut();
 
     }
-=======
 
->>>>>>> Stashed changes
     public static FirebaseUser getCurrentUser()
     {
         if(FirebaseAuth.getInstance().getCurrentUser() != null)
@@ -116,8 +109,5 @@ public class UserProfile {
         }
         return null;
     }
-<<<<<<< Updated upstream
-=======
 
->>>>>>> Stashed changes
 }

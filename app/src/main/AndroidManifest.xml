@@ -45,10 +45,10 @@
             android:process=":remote" />
 
         <activity
-            android:name=".SettingsActivity"
+            android:name=".SettingsActivity" android:label="@string/app_name"
             android:windowSoftInputMode="adjustResize" />
-        <activity android:name=".WelcomeActivity" />
-        <activity android:name=".GpsTrackerActivity" />
+        <activity android:name=".WelcomeActivity" android:label="@string/app_name" />
+        <activity android:name=".GpsTrackerActivity" android:label="@string/app_name" />
 
         <meta-data
             android:name="com.facebook.sdk.ApplicationId"
@@ -57,11 +57,11 @@
             android:name="com.google.android.maps.v2.API_KEY"
             android:value="@string/googleMapsClientId" />
 
-        <activity android:name=".MainActivity" />
-        <activity android:name=".WaterIntakeActivity" />
-        <activity android:name=".MapActivity" />
-        <activity android:name=".MonitorUsingSensorActivity" />
-        <activity android:name=".TestActivity"></activity>
+        <activity android:name=".MainActivity" android:label="@string/app_name" />
+        <activity android:name=".WaterIntakeActivity" android:label="@string/app_name"/>
+        <activity android:name=".MapActivity" android:label="@string/app_name" />
+        <activity android:name=".MonitorUsingSensorActivity" android:label="@string/app_name" />
+        <activity android:name=".TestActivity" android:label="@string/app_name"></activity>
     </application>
 
 </manifest>
