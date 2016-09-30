@@ -2,7 +2,6 @@ package mutils;
 
 import android.content.Context;
 import android.content.SharedPreferences;
-import android.util.Log;
 
 import com.appradar.viper.moovon.GlobalApplication;
 
@@ -39,7 +38,6 @@ public class AppSharedPreferences {
 
     public int getPropInteger(String keyName)
     {
-        Log.e("getPropInteger", "KeyName is : " +keyName);
         return mSharedPref.getInt(keyName, 0);
     }
 

@@ -12,6 +12,8 @@ import com.appradar.viper.moovon.GpsTrackerActivity;
 import com.appradar.viper.moovon.R;
 import com.appradar.viper.moovon.SettingsActivity;
 
+import java.util.Calendar;
+
 /**
  * Created by viper on 29/09/16.
  */
@@ -25,6 +27,14 @@ public class MoveService extends IntentService {
 
     @Override
     protected void onHandleIntent(Intent intent) {
+
+        Boolean isNight;
+        Calendar cal = Calendar.getInstance();
+        int hour = cal.get(Calendar.HOUR_OF_DAY);
+        isNight = hour < 9 || hour > 21;
+        if (isNight)
+            return;
+
         // Do the task here
         int alert_type = intent.getIntExtra(SettingsActivity.ALERT_TYPE, 1);
         Log.i("MoveService", "Service called for alert type : " + alert_type);

@@ -4,8 +4,8 @@
     <string name="dashboard">Dashboard</string>
     <string name="addWater">Add Water</string>
     <string name="addDistance">Add Distance</string>
-    <string name="option1">Option #1</string>
-    <string name="option2">Option #2</string>
+    <string name="maps2">Maps</string>
+    <string name="sensorTrack">Trak with Sen</string>
     <string name="option3">Option #3</string>
     <string name="logout">Logout</string>
 
@@ -13,13 +13,15 @@
         <item>@string/dashboard</item>
         <item>@string/addWater</item>
         <item>@string/addDistance</item>
-        <item>@string/option1</item>
-        <item>@string/option2</item>
+        <item>@string/maps2</item>
+        <item>@string/sensorTrack</item>
         <item>@string/option3</item>
         <item>Rate Us</item>
         <item>Invite</item>
         <item>@string/logout</item>
     </string-array>
+
+    <string name="googleMapsClientId">AIzaSyCKoaTaMLrJD20Z4wrcv-2Dkt9Oj5xkEdU</string>
 
     <string name="drawer_open">Open navigation drawer</string>
     <string name="drawer_close">Close navigation drawer</string>

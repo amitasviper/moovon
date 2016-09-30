@@ -113,6 +113,20 @@ public class MainActivity extends AppCompatActivity implements GoogleApiClient.C
                     return;
                 }
 
+                if (option_text.equalsIgnoreCase(getString(R.string.maps2)))
+                {
+                    Intent intent = new Intent(MainActivity.this, MapActivity.class);
+                    startActivity(intent);
+                    return;
+                }
+
+                if (option_text.equalsIgnoreCase(getString(R.string.sensorTrack)))
+                {
+                    Intent intent = new Intent(MainActivity.this, MonitorUsingSensorActivity.class);
+                    startActivity(intent);
+                    return;
+                }
+
                 if (option_text.equalsIgnoreCase(getString(R.string.logout)))
                 {
                     LogOutUser();
