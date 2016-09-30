@@ -66,7 +66,7 @@ public class CustomLineChart {
 
     private void GetTimeLineFormatter()
     {
-        if(sIntervalType.toLowerCase() == "hours")
+        if(sIntervalType.equalsIgnoreCase("hours"))
         {
             for (int i=1; i<=24; i++)
             {
@@ -113,7 +113,7 @@ public class CustomLineChart {
         AxisValueFormatter formatter = new AxisValueFormatter() {
             @Override
             public String getFormattedValue(float value, AxisBase axis) {
-                return listTimeFormatter.get((int) value);
+                return listTimeFormatter.get((int) value - 1);
             }
 
             @Override
@@ -122,7 +122,6 @@ public class CustomLineChart {
             }
         };
 
-
         XAxis xAxis = chart.getXAxis();
         xAxis.setGranularity(1f); // minimum axis-step (interval) is 1
         xAxis.setValueFormatter(formatter);
@@ -130,31 +129,4 @@ public class CustomLineChart {
     }
 }
 
-//// x and y value for chart
-//
-//class ChartValues{
-//
-//    private  int x;
-//    private float y;
-//
-//    public ChartValues(int x, float y) {
-//        this.nHour = nHour;
-//        this.fDistance = fDistance;
-//    }
-//
-//    public int getnHour() {
-//        return nHour;
-//    }
-//
-//    public void setnHour(int nHour) {
-//        this.nHour = nHour;
-//    }
-//
-//    public float getfDistance() {
-//        return fDistance;
-//    }
-//
-//    public void setfDistance(float fDistance) {
-//        this.fDistance = fDistance;
-//    }
-//}
+

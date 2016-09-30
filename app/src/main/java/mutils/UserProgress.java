@@ -129,7 +129,7 @@ public class UserProgress {
         return result;
     }
 
-    String getCurrentTimeAsKey()
+    public static String getCurrentTimeAsKey()
     {
         Calendar c = Calendar.getInstance();
         int hours = c.get(Calendar.HOUR);
@@ -198,12 +198,12 @@ public class UserProgress {
         });
     }
 
-    Query getDailyProgressReference(String year, String month, String day, String childNode)
+    public static Query getDailyProgressReference(String year, String month, String day, String childNode)
     {
         return FirebaseDatabase.getInstance().getReference(rootUserProgress).child(UserProfile.getLoggedOnUserId()).child(year).child(childNode).child(month).child(day);
     }
 
-    Query getMonthlyProgressReference(String year, String month, String childNode)
+    public static Query getMonthlyProgressReference(String year, String month, String childNode)
     {
         return FirebaseDatabase.getInstance().getReference(rootUserProgress).child(UserProfile.getLoggedOnUserId()).child(year).child(childNode).child(month);
     }
@@ -313,12 +313,13 @@ public class UserProgress {
         });
     }
 
-    public void getMonthlyReportForWalk()
+    public void getMonthlyReportForWalk(int nDays)
     {
         String year = String.valueOf(getCurrentYear());
         String month = String.valueOf(getCurrentMonth()-1);
 
-        for(int day=1; day <= 31; day++)
+
+        for(int day=1; day <= nDays; day++)
         {
             getMonthlyProgressReference(year, month, rootChal).getRef().child(String.valueOf(day)).child(childCount).addListenerForSingleValueEvent(new ValueEventListener() {
                 @Override
@@ -334,6 +335,8 @@ public class UserProgress {
                 public void onCancelled(DatabaseError databaseError) {
 
                 }
+
+
             });
         }
     }
