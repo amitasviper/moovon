@@ -3,6 +3,7 @@ package com.appradar.viper.moovon;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.Color;
+import android.graphics.Typeface;
 import android.os.Build;
 import android.os.Bundle;
 import android.support.v4.view.PagerAdapter;
@@ -21,6 +22,7 @@ import android.widget.Switch;
 import android.widget.TextView;
 
 import com.appradar.viper.moovon.User.UserProfile;
+import com.shawnlin.numberpicker.NumberPicker;
 
 import mutils.AppSharedPreferences;
 
@@ -78,8 +80,25 @@ public class WelcomeActivity extends AppCompatActivity {
                 // checking for last page
                 // if last page home screen will be launched
                 int currentpage = viewPager.getCurrentItem();
+                NumberPicker numberPicker;
+                int value;
                 switch (currentpage){
                     case 0:
+                        numberPicker = (NumberPicker) findViewById(R.id.number_picker_drinks);
+                        value = numberPicker.getValue();
+
+                        UserProfile.getMoveTargetReference(UserProfile.getLoggedOnUserId()).setValue(value);
+                        AppSharedPreferences.getInstance().setPropInteger(AppSharedPreferences.SETTING_MOVEMENT_FREQ, value);
+                        break;
+                    case 1:
+                        numberPicker = (NumberPicker) findViewById(R.id.number_picker_move);
+                        value = numberPicker.getValue();
+
+                        UserProfile.getMoveTargetReference(UserProfile.getLoggedOnUserId()).setValue(value);
+                        AppSharedPreferences.getInstance().setPropInteger(AppSharedPreferences.SETTING_MOVEMENT_FREQ, value);
+                        break;
+
+
 
                 }
                 int current = getItem(+1);
@@ -132,6 +151,8 @@ public class WelcomeActivity extends AppCompatActivity {
 //        UserProfile currentUser = new UserProfile(UserProfileNode.getLoggedOnUserDisplayName(), reasonToJoinArmy, experience, occupation);
 //        UserProfileNode.getUserProfile(UserProfileNode.getLoggedOnUserId()).getRef().updateChildren(currentUser.toMap());
 
+        AppSharedPreferences.getInstance().setPropInteger(AppSharedPreferences.SETTING_TARGET_DRINK, 6);
+        AppSharedPreferences.getInstance().setPropInteger(AppSharedPreferences.SETTING_TARGET_DRINK, 2000);
         AppSharedPreferences.getInstance().setPropInteger(AppSharedPreferences.APP_LAUNCH_FLAG, 1);
 
         startActivity(new Intent(WelcomeActivity.this, MainActivity.class));
@@ -198,44 +219,21 @@ public class WelcomeActivity extends AppCompatActivity {
                 aSwitch.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
                     @Override
                     public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-                        if(linearLayout.getVisibility() == View.GONE) {
+                        if(linearLayout.getVisibility() == View.INVISIBLE) {
                             linearLayout.setVisibility(View.VISIBLE);
-                            Button btn1hr = (Button) view.findViewById(R.id.drink_btn1hr);
-                            Button btn2hr = (Button) view.findViewById(R.id.drink_btn2hr);
-                            Button btn3hr = (Button) view.findViewById(R.id.drink_btn3hr);
-                            btn1hr.setOnClickListener(new View.OnClickListener() {
-                                @Override
-                                public void onClick(View v) {
-                                    //Save
-                                    UserProfile.getDrinkTargetReference(UserProfile.getLoggedOnUserId()).setValue(1);
-                                    AppSharedPreferences.getInstance().setPropInteger(AppSharedPreferences.SETTING_WATER_FREQ, 60);
-                                    moveToNextPage();
-                                }
-                            });
 
-                            btn2hr.setOnClickListener(new View.OnClickListener() {
-                                @Override
-                                public void onClick(View v) {
-                                    //Save
-                                    UserProfile.getDrinkTargetReference(UserProfile.getLoggedOnUserId()).setValue(2);
-                                    AppSharedPreferences.getInstance().setPropInteger(AppSharedPreferences.SETTING_WATER_FREQ, 120);
+                            final NumberPicker numberPicker = (NumberPicker) view.findViewById(R.id.number_picker_drinks);
 
-                                    moveToNextPage();
-                                }
-                            });
+                            numberPicker.setDividerColorResource(R.color.colorPrimary);
 
-                            btn3hr.setOnClickListener(new View.OnClickListener() {
-                                @Override
-                                public void onClick(View v) {
-                                    //Save
-                                    UserProfile.getDrinkTargetReference(UserProfile.getLoggedOnUserId()).setValue(3);
-                                    AppSharedPreferences.getInstance().setPropInteger(AppSharedPreferences.SETTING_WATER_FREQ, 180);
-                                    moveToNextPage();
-                                }
-                            });
+                            numberPicker.setTextColorResource(R.color.graph2);
+                            numberPicker.setTextSize(getResources().getDimension(R.dimen.txt_description));
+                            numberPicker.setTypeface(Typeface.DEFAULT_BOLD);
+
+
 
                         }else{
-                            linearLayout.setVisibility(View.GONE);
+                            linearLayout.setVisibility(View.INVISIBLE);
                         }
                     }
                 });
@@ -246,43 +244,18 @@ public class WelcomeActivity extends AppCompatActivity {
                 aSwitch.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
                     @Override
                     public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-                        if(linearLayout.getVisibility() == View.GONE) {
+                        if(linearLayout.getVisibility() == View.INVISIBLE) {
                             linearLayout.setVisibility(View.VISIBLE);
-                            Button btn1hr = (Button) view.findViewById(R.id.move_btn1hr);
-                            Button btn2hr = (Button) view.findViewById(R.id.move_btn2hr);
-                            Button btn3hr = (Button) view.findViewById(R.id.move_btn3hr);
-                            btn1hr.setOnClickListener(new View.OnClickListener() {
-                                @Override
-                                public void onClick(View v) {
-                                    //Save
-                                    UserProfile.getMoveTargetReference(UserProfile.getLoggedOnUserId()).setValue(1);
-                                    AppSharedPreferences.getInstance().setPropInteger(AppSharedPreferences.SETTING_MOVEMENT_FREQ, 60);
-                                    moveToNextPage();
-                                }
-                            });
+                            final NumberPicker numberPicker = (NumberPicker) view.findViewById(R.id.number_picker_move);
 
-                            btn2hr.setOnClickListener(new View.OnClickListener() {
-                                @Override
-                                public void onClick(View v) {
-                                    //Save
-                                    UserProfile.getMoveTargetReference(UserProfile.getLoggedOnUserId()).setValue(2);
-                                    AppSharedPreferences.getInstance().setPropInteger(AppSharedPreferences.SETTING_MOVEMENT_FREQ, 120);
-                                    moveToNextPage();
-                                }
-                            });
+                            numberPicker.setDividerColorResource(R.color.colorPrimary);
+                            numberPicker.setTypeface(Typeface.DEFAULT_BOLD);
 
-                            btn3hr.setOnClickListener(new View.OnClickListener() {
-                                @Override
-                                public void onClick(View v) {
-                                    //Save
-                                    UserProfile.getMoveTargetReference(UserProfile.getLoggedOnUserId()).setValue(3);
-                                    AppSharedPreferences.getInstance().setPropInteger(AppSharedPreferences.SETTING_MOVEMENT_FREQ, 180);
-                                    moveToNextPage();
-                                }
-                            });
+                            numberPicker.setTextColorResource(R.color.graph1);
+                            numberPicker.setTextSize(getResources().getDimension(R.dimen.txt_description));
 
                         }else{
-                            linearLayout.setVisibility(View.GONE);
+                            linearLayout.setVisibility(View.INVISIBLE);
                         }
                     }
                 });

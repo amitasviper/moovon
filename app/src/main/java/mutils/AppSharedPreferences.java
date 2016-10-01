@@ -14,6 +14,9 @@ public class AppSharedPreferences {
 
     public static String SETTING_AGE = "SettingAge";
     public static String SETTING_GENDER = "SettingGender";
+    public static String SETTING_TARGET_MOVE = "Setting_targe_move";
+    public static String SETTING_TARGET_DRINK = "Setting_target_drink";
+
     public static String SETTING_WATER_FREQ = "SettingWater";
     public static String SETTING_MOVEMENT_FREQ = "SettingMovement";
     public static String APP_LAUNCH_FLAG = "launhFlag";

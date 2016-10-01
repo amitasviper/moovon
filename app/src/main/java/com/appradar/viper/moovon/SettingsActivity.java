@@ -69,7 +69,7 @@ public class SettingsActivity extends AppCompatActivity {
         // Interval can be INTERVAL_FIFTEEN_MINUTES, INTERVAL_HALF_HOUR, INTERVAL_HOUR, INTERVAL_DAY
         Log.e("scheduleAlarm", "Time in secs is : " + hours);
         alarm.setRepeating(AlarmManager.RTC_WAKEUP, firstMillis,
-                1000 * 60 * 60 * hours, pIntent);
+                1000 * 60 * hours, pIntent);
 
     }
 
@@ -99,7 +99,7 @@ public class SettingsActivity extends AppCompatActivity {
                     int movement = Integer.parseInt(et_movement_freq.getText().toString());
                     int water = Integer.parseInt(et_water_freq.getText().toString());
 
-                    if (gender.isEmpty() || age < 1 || movement < 1 || movement > 23 || water < 1 || water > 23)
+                    if (gender.isEmpty() || age < 1 || movement < 1  || water < 1)
                     {
                         Toast.makeText(SettingsActivity.this, "Please set all fields correctly", Toast.LENGTH_SHORT).show();
                         return;

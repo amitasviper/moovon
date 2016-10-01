@@ -260,12 +260,13 @@ public class UserProgress {
         String month = String.valueOf(getCurrentMonth());
         String day = String.valueOf(getCurrentDay());
 
-        getDailyProgressReference(year, month, day, rootPaani).getRef().addListenerForSingleValueEvent(new ValueEventListener() {
+        getDailyProgressReference(year, month, day, rootPaani).getRef().child(childCount).addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
                 if(dataSnapshot.getKey() == childCount)
                 {
                     // assign for gettint total consumption on that day.
+
                 }
                 else
                 {

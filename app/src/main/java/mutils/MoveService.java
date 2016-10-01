@@ -8,7 +8,7 @@ import android.support.v4.app.NotificationCompat;
 import android.support.v4.app.NotificationManagerCompat;
 import android.util.Log;
 
-import com.appradar.viper.moovon.GpsTrackerActivity;
+import com.appradar.viper.moovon.MapActivity;
 import com.appradar.viper.moovon.R;
 import com.appradar.viper.moovon.SettingsActivity;
 
@@ -39,7 +39,7 @@ public class MoveService extends IntentService {
         int alert_type = intent.getIntExtra(SettingsActivity.ALERT_TYPE, 1);
         Log.i("MoveService", "Service called for alert type : " + alert_type);
 
-        Intent actintent = new Intent(this, GpsTrackerActivity.class);
+        Intent actintent = new Intent(this, MapActivity.class);
 
         PendingIntent pIntent = PendingIntent.getActivity(this, 1,
                 actintent, PendingIntent.FLAG_UPDATE_CURRENT);

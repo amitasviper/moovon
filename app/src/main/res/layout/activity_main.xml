@@ -12,7 +12,8 @@
         android:id="@+id/main_layout"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:orientation="vertical">
+        android:orientation="vertical"
+        android:background="#ffffff">
 
         <!-- our toolbar -->
         <android.support.v7.widget.Toolbar
@@ -23,27 +24,43 @@
             android:minHeight="?attr/actionBarSize"
             android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
             app:popupTheme="@style/ThemeOverlay.AppCompat.Light" />
+<ImageView
+    android:padding="10dp"
+    android:layout_marginTop="50dp"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:src="@drawable/logo"/>
+        <!--<LinearLayout-->
 
-        <LinearLayout
-
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:orientation="horizontal"
-            android:weightSum="2">
-
-            <com.github.mikephil.charting.charts.PieChart
-                android:id="@+id/chartWalkProgress"
-                android:layout_width="0dp"
-                android:layout_height="200dp"
-                android:layout_weight="1"
-                />
-            <com.github.mikephil.charting.charts.PieChart
-                android:id="@+id/chartDrinkProgress"
-                android:layout_width="0dp"
-                android:layout_weight="1"
-                android:layout_height="200dp"
-                />
-        </LinearLayout>
+            <!--android:layout_width="match_parent"-->
+            <!--android:layout_height="match_parent"-->
+            <!--android:orientation="vertical"-->
+            <!--android:weightSum="2">-->
+            <!--<TextView-->
+                <!--android:layout_gravity="center_horizontal"-->
+                <!--android:layout_width="wrap_content"-->
+                <!--android:textSize="@dimen/txt_description"-->
+                <!--android:layout_height="wrap_content"-->
+                <!--android:text="Movement progress for the day"/>-->
+            <!--<com.github.mikephil.charting.charts.PieChart-->
+                <!--android:id="@+id/chartWalkProgress"-->
+                <!--android:layout_width="0dp"-->
+                <!--android:layout_height="200dp"-->
+                <!--android:layout_weight="1"-->
+                <!--/>-->
+            <!--<TextView-->
+                <!--android:layout_gravity="center_horizontal"-->
+                <!--android:layout_width="wrap_content"-->
+                <!--android:layout_height="wrap_content"-->
+                <!--android:textSize="@dimen/txt_description"-->
+                <!--android:text="Drink progress for the day"/>-->
+            <!--<com.github.mikephil.charting.charts.PieChart-->
+                <!--android:id="@+id/chartDrinkProgress"-->
+                <!--android:layout_width="0dp"-->
+                <!--android:layout_weight="1"-->
+                <!--android:layout_height="200dp"-->
+                <!--/>-->
+        <!--</LinearLayout>-->
     </LinearLayout>
 
     <LinearLayout

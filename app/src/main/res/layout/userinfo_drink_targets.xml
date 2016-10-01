@@ -1,74 +1,82 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical" android:layout_width="match_parent"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/dot_dark_screen1"
-    >
+    android:padding="@dimen/activity_horizontal_margin"
+    android:background="@color/dot_nice_blue">
+
+
     <ImageView
-        android:layout_centerHorizontal="true"
         android:layout_marginTop="50dp"
         android:layout_marginBottom="30dp"
         android:id="@+id/drink.image"
         android:layout_width="100dp"
         android:layout_height="100dp"
+        android:layout_gravity="center_horizontal"
         android:src="@drawable/bottle"/>
-    <TextView
-        android:layout_centerHorizontal="true"
 
-        android:id="@+id/drink.heading"
-        android:layout_below="@id/drink.image"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Tell us about your Targets"
-        android:textSize="@dimen/txt_heading"
-        />
-    <Switch
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="20dp"
-        android:id="@+id/drink.switch"
-        android:layout_centerHorizontal="true"
-        android:layout_below="@id/drink.heading"
-        android:textSize="@dimen/txt_description"
-        android:text="I would like to be reminded" />
     <LinearLayout
-        android:layout_centerHorizontal="true"
-        android:gravity="center_horizontal"
-        android:id="@+id/drink.layout_take_info"
-        android:layout_below="@id/drink.switch"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="vertical"
-        android:visibility="gone"
-        >
+        android:gravity="center_horizontal"
+        android:orientation="vertical">
+
         <TextView
+            android:id="@+id/drink.heading"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textSize="@dimen/txt_description"
-            android:text="At interval(Hrs) of:"
+            android:layout_gravity="center_horizontal"
+            android:text="Tell us about your Targets"
+            android:textSize="@dimen/setting_label"
+            android:textColor="@color/white"
             />
-        <Button
-            style="@style/Buttonchoice_drink"
+
+        <Switch
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:id="@+id/drink.switch"
+            android:switchPadding="20sp"
+            android:textColor="@color/white"
+            android:textSize="@dimen/txt_description"
+            android:text="I would like to be reminded" />
+
+
+        <LinearLayout
             android:gravity="center_horizontal"
-            android:text="1"
-            android:id="@+id/drink.btn1hr"/>
-        <Button
-            style="@style/Buttonchoice_drink"
-            android:layout_width="wrap_content"
+            android:id="@+id/drink.layout_take_info"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:gravity="center_horizontal"
-            android:text="2"
-            android:id="@+id/drink.btn2hr"/>
-        <Button
-            style="@style/Buttonchoice_drink"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:gravity="center_horizontal"
-            android:text="3"
-            android:id="@+id/drink.btn3hr"/>
+            android:layout_marginTop="10dp"
+            android:orientation="vertical"
+            android:visibility="invisible" >
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="@dimen/txt_description"
+                android:text="At interval(Hrs) of:"
+                android:textColor="@color/white"
+                />
+            <com.shawnlin.numberpicker.NumberPicker
+                android:id="@+id/number_picker_drinks"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerInParent="true"
+                app:np_width="64dp"
+                app:np_height="180dp"
+                app:np_dividerColor="@color/colorAccent"
+                app:np_formatter="%02d"
+                app:np_max="4"
+                app:np_min="1"
+                app:np_textColor="@color/colorAccent"
+                app:np_textSize="12sp"
+                app:np_typeface="@string/roboto_light" />
+        </LinearLayout>
+
+
     </LinearLayout>
 
-
-</RelativeLayout>
+</LinearLayout>

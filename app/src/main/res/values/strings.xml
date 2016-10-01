@@ -92,5 +92,6 @@
     <string name="next">Next</string>
     <string name="start">Start</string>
     <string name="done">Done</string>
+    <string name="roboto_light">sans-serif-light</string>
 
 </resources>

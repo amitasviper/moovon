@@ -33,7 +33,6 @@ import com.google.android.gms.location.ActivityRecognition;
 import com.google.firebase.auth.FirebaseUser;
 import com.squareup.picasso.Picasso;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import mutils.CircleTransform;
@@ -46,6 +45,10 @@ public class MainActivity extends AppCompatActivity implements GoogleApiClient.C
     DrawerLayout mDrawerLayout;
     ListView mDrawerList;
     PieChart moveprogress, drinkprogress;
+    float done, target;
+    List<PieEntry> entries,entries2;
+    PieDataSet set1, set2;
+    PieData data, data2;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -143,41 +146,102 @@ public class MainActivity extends AppCompatActivity implements GoogleApiClient.C
 
         drawerToggle.syncState();
         SetupProfileInfo();
-        moveprogress = (PieChart)findViewById(R.id.chartWalkProgress);
-        drinkprogress = (PieChart)findViewById(R.id.chartDrinkProgress);
+//        moveprogress = (PieChart)findViewById(R.id.chartWalkProgress);
+//        drinkprogress = (PieChart)findViewById(R.id.chartDrinkProgress);
+//        final int[] colors = {getResources().getColor(R.color.graph1), getResources().getColor(R.color.graph2)};
+//
+//        target  = 6.0f; //AppSharedPreferences.getInstance().getPropInteger(AppSharedPreferences.SETTING_TARGET_MOVE);
+//        UserProgress user = UserProgress.getInstance();
+//        user.getDailyProgressReference(String.valueOf(user.getCurrentYear()),String.valueOf( user.getCurrentMonth()), String.valueOf(user.getCurrentDay()), UserProgress.rootChal).getRef()
+//                .child(UserProgress.childCount).addListenerForSingleValueEvent(new ValueEventListener() {
+//
+//            @Override
+//            public void onDataChange(DataSnapshot dataSnapshot) {
+//                if(dataSnapshot.exists()) {
+//                    done = Float.valueOf("" +dataSnapshot.getValue(long.class));
+//                }else{
+//                    done = 0.0f;
+//                }
+//                entries = new ArrayList<>();
+//
+//                entries.add(new PieEntry(target- done, "Achieved"));
+//                entries.add(new PieEntry(done, "Remaining"));
+//
+//
+//                set = new PieDataSet(entries, "Movement today");
+//
+//                set.setColors(colors);
+//                data = new PieData(set);
+//                moveprogress.setData(data);
+//                moveprogress.invalidate();
+//            }
+//
+//            @Override
+//            public void onCancelled(DatabaseError databaseError) {
+//
+//            }
+//        });
+//        done = 350.0f;
+//        entries = new ArrayList<>();
+//
+//        entries.add(new PieEntry(target- done, "Achieved"));
+//        entries.add(new PieEntry(done, "Remaining"));
+//
+//
+//        set1 = new PieDataSet(entries, "Movement today");
+//
+//        set1.setColors(colors);
+//        data = new PieData(set1);
+//        moveprogress.setData(data);
+//        moveprogress.invalidate();
+//
+//
+//        target  = 2000.0f;//AppSharedPreferences.getInstance().getPropInteger(AppSharedPreferences.SETTING_TARGET_DRINK);
+//        user = UserProgress.getInstance();
+//        DatabaseReference ref = user.getDailyProgressReference(String.valueOf(user.getCurrentYear()),String.valueOf( user.getCurrentMonth()), String.valueOf(user.getCurrentDay()), UserProgress.rootPaani).getRef()
+//                .child(UserProgress.childCount);
+//        ref.addListenerForSingleValueEvent(new ValueEventListener() {
+//
+//               @Override
+//               public void onDataChange(DataSnapshot dataSnapshot) {
+//                   if(dataSnapshot.exists()) {
+//                       done = Float.valueOf("" +dataSnapshot.getValue(long.class));
+//                   }else{
+//                       done = 0.0f;
+//                   }
+//                   entries = new ArrayList<>();
+//
+//                   entries.add(new PieEntry(target- done, "Achieved"));
+//                   entries.add(new PieEntry(done, "Remaining"));
+//
+//
+//                   set = new PieDataSet(entries, "Drinking targets");
+//
+//                   set.setColors(colors);
+//                   data = new PieData(set);
+//                   drinkprogress.setData(data);
+//                   drinkprogress.invalidate();
+//               }
+//
+//               @Override
+//               public void onCancelled(DatabaseError databaseError) {
+//
+//               }
+//           });
+//        done=2.6f;
+//        entries2 = new ArrayList<>();
+//
+//        entries2.add(new PieEntry(target- done, "Achieved"));
+//        entries2.add(new PieEntry(done, "Remaining"));
+//
+//
+//        set2 = new PieDataSet(entries2, "Drinking targets");
+//
+//        set2.setColors(colors);
+//        data2 = new PieData(set2);
+//        drinkprogress.setData(data2);
+//        drinkprogress.invalidate();
 
-        float target  = 6.0f;//AppSharedPreferences.getInstance().getPropInteger(AppSharedPreferences.SETTING_MOVEMENT_FREQ);
-        float done = 2.5f;
-        List<PieEntry> entries = new ArrayList<>();
-
-        entries.add(new PieEntry(target- done, "Achieved"));
-        entries.add(new PieEntry(done, "Remaining"));
-
-
-        PieDataSet set = new PieDataSet(entries, "Movement today");
-
-        int[] colors = {getResources().getColor(R.color.graph1), getResources().getColor(R.color.graph2)};
-
-        set.setColors(colors);
-
-        PieData data = new PieData(set);
-        moveprogress.setData(data);
-        moveprogress.invalidate();
-
-        target  = 6.0f;//AppSharedPreferences.getInstance().getPropInteger(AppSharedPreferences.SETTING_MOVEMENT_FREQ);
-        done = 4.5f;
-        entries = new ArrayList<>();
-
-        entries.add(new PieEntry(target- done, "Achieved"));
-        entries.add(new PieEntry(done, "Remaining"));
-
-
-        set = new PieDataSet(entries, "Drinking targets");
-
-        set.setColors(colors);
-        data = new PieData(set);
-        drinkprogress.setData(data);
-        drinkprogress.invalidate();
 
     }
 
@@ -206,8 +270,7 @@ public class MainActivity extends AppCompatActivity implements GoogleApiClient.C
 
         iv_profile_name.setText(user.getDisplayName());
         iv_profile_email.setText(user.getEmail());
-        iv_profile_name.setText(UserProfile.getLoggedOnUserDisplayName());
-        iv_profile_email.setText(UserProfile.getLoggedOnUserId());
+
     }
 
     @Override

@@ -90,7 +90,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:inputType="number"
-                android:hint="Time in hours [1-23]" />
+                android:hint="Time in mins" />
 
         </LinearLayout>
 
@@ -111,7 +111,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:inputType="numberDecimal"
-                android:hint="Time in hours [1-23]" />
+                android:hint="Time in mins" />
 
         </LinearLayout>
 
